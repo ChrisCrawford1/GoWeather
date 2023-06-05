@@ -10,7 +10,6 @@ A small CLI application that can be used to fetch weather for any city. This was
 _UV index and air quality index will be added soon, as will pollen levels_
 
 _(Only available for Europe during pollen season however.)_
-
 ---
 
 
@@ -22,11 +21,11 @@ _(Only available for Europe during pollen season however.)_
 
 **City name entry view**
 
-![City name entry view](./images/initial.png)
+![initial](https://github.com/ChrisCrawford1/GoWeather/assets/44769623/ffaafae0-3450-4b7a-ae7e-da00129ea6f2)
 
 **Weather info view**
 
-![City name entry view](./images/info.png)
+![info](https://github.com/ChrisCrawford1/GoWeather/assets/44769623/7c1b4e02-5f1b-49d7-b518-9e44258f41d2)
 
 
 **Planned features**
