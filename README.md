@@ -1,7 +1,7 @@
 # Go Weather
 
 [![Go](https://github.com/ChrisCrawford1/GoWeather/actions/workflows/go.yml/badge.svg)](https://github.com/ChrisCrawford1/GoWeather/actions/workflows/go.yml)
-
+[![codecov](https://codecov.io/gh/ChrisCrawford1/GoWeather/branch/main/graph/badge.svg?token=2LGbW1rftR)](https://codecov.io/gh/ChrisCrawford1/GoWeather)
 
 
 ## About
