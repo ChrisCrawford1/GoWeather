@@ -97,7 +97,27 @@ func TestClientGetGeocodingLocationDataNoResults(t *testing.T) {
 	if err.Error() != expectedError {
 		t.Errorf("Expected error for no results, got %s", err)
 	}
+}
 
+func TestClientGetGeocodingLocationRoundTripError(t *testing.T) {
+	testClient := NewTestHttpClientWithError(func(req *http.Request) *http.Response {
+		return &http.Response{
+			StatusCode: http.StatusOK,
+			Body:       io.NopCloser(bytes.NewBufferString("")),
+			Header:     make(http.Header),
+		}
+	})
+
+	client := Client{
+		HTTPClient: testClient,
+	}
+
+	_, err := client.GetGeocodingForLocation("vlahbah")
+	expectedError := `Error fetching geocoding data from OpenMeteo: Get "https://geocoding-api.open-meteo.com/v1/search?name=vlahbah&count=1": Something went wrong`
+
+	if err.Error() != expectedError {
+		t.Errorf("Expected error for fetching data, got %s", err)
+	}
 }
 
 func TestClientGetWeatherInfoFromCoords(t *testing.T) {
@@ -137,5 +157,26 @@ func TestClientGetWeatherInfoFromCoordsNonOkResult(t *testing.T) {
 
 	if err == nil {
 		t.Error("Was expecting status code error, none received")
+	}
+}
+
+func TestClientGetWeatherInfoFromCoordsRoundTripError(t *testing.T) {
+	testClient := NewTestHttpClientWithError(func(req *http.Request) *http.Response {
+		return &http.Response{
+			StatusCode: http.StatusOK,
+			Body:       io.NopCloser(bytes.NewBufferString("")),
+			Header:     make(http.Header),
+		}
+	})
+
+	client := Client{
+		HTTPClient: testClient,
+	}
+
+	_, err := client.GetWeatherInfoFromCoords(43.70455, -79.4046)
+	expectedError := `Error fetching weather data from OpenMeteo: Get "https://api.open-meteo.com/v1/forecast?latitude=43.7045&longitude=-79.4046&current_weather=true&timezone=EST": Something went wrong`
+
+	if err.Error() != expectedError {
+		t.Errorf("Expected error for fetching data, got %s", err)
 	}
 }

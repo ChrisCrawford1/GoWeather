@@ -1,6 +1,7 @@
 package openmeteo
 
 import (
+	"errors"
 	"net/http"
 	"os"
 	"testing"
@@ -66,5 +67,20 @@ func NewTestHttpClient(rTrip RoundTripFunc) *http.Client {
 	// so as to not ping any real world services when the tests run.
 	return &http.Client{
 		Transport: rTrip,
+	}
+}
+
+// TODO: Look at a better way of doing this without duplication
+type RoundTripFuncErr func(req *http.Request) *http.Response
+
+func (rTrip RoundTripFuncErr) RoundTrip(req *http.Request) (*http.Response, error) {
+	return nil, errors.New("Something went wrong")
+}
+
+func NewTestHttpClientWithError(rTripErr RoundTripFuncErr) *http.Client {
+	// For testing purposes we want to mock out the transport layer / call
+	// so as to not ping any real world services when the tests run.
+	return &http.Client{
+		Transport: rTripErr,
 	}
 }

@@ -172,3 +172,18 @@ func TestUpdateEscCase(t *testing.T) {
 	// 	t.Errorf("Expected %s, got %s", expected, model.View())
 	// }
 }
+
+func TestUpdateFetchedWeatherErrorCase(t *testing.T) {
+	fetchedWeather := FetchedWeather{
+		Err: errors.New("Something went wrong fetching the data"),
+	}
+	var testModel = Model{
+		loading: true,
+	}
+
+	_, cmd := testModel.Update(fetchedWeather)
+
+	if cmd != nil {
+		t.Error("Expected a nil value for command, non nil value received")
+	}
+}
