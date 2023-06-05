@@ -1,4 +1,4 @@
-module github.com/ChrisCrawford1/goweather
+module github.com/ChrisCrawford1/GoWeather
 
 go 1.20
 
