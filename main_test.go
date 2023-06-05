@@ -3,10 +3,9 @@ package main
 import (
 	"errors"
 	"fmt"
+	"goweather/openmeteo"
 	"reflect"
 	"testing"
-
-	"GoWeather/openmeteo"
 
 	"github.com/charmbracelet/bubbles/spinner"
 	"github.com/charmbracelet/bubbles/textinput"

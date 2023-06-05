@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
+	"goweather/openmeteo"
 	"log"
 	"net/http"
 	"strings"
-
-	"GoWeather/openmeteo"
 
 	"github.com/charmbracelet/bubbles/spinner"
 	"github.com/charmbracelet/bubbles/textinput"
