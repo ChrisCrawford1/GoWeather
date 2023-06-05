@@ -6,7 +6,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/ChrisCrawford1/GoWeather/openmeteo"
+	"GoWeather/openmeteo"
+
 	"github.com/charmbracelet/bubbles/spinner"
 	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
