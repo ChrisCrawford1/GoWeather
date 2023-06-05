@@ -3,10 +3,10 @@ package main
 import (
 	"errors"
 	"fmt"
+	"goweather/openmeteo"
 	"reflect"
 	"testing"
 
-	"github.com/ChrisCrawford1/goweather/openmeteo"
 	"github.com/charmbracelet/bubbles/spinner"
 	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
