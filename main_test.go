@@ -187,3 +187,61 @@ func TestUpdateFetchedWeatherErrorCase(t *testing.T) {
 		t.Error("Expected a nil value for command, non nil value received")
 	}
 }
+
+func TestUpdateFetchedWeatherCase(t *testing.T) {
+	fetchedWeather := FetchedWeather{
+		Weather: openmeteo.CurrentWeather{},
+		City:    "Toronto",
+		Country: "Canada",
+	}
+	var testModel = Model{
+		loading: true,
+	}
+
+	model, cmd := testModel.Update(fetchedWeather)
+
+	if model == nil {
+		t.Error("Model not expected to be nil, got nil")
+	}
+
+	if cmd != nil {
+		t.Errorf("Expected return cmd to be nil, got %v", cmd)
+	}
+}
+
+func TestUpdateTypingCase(t *testing.T) {
+	var testModel = Model{
+		loading: true,
+	}
+
+	_, cmd := testModel.Update(tea.KeyMsg{})
+
+	if cmd != nil {
+		t.Errorf("Expected return cmd to be nil, got %v", cmd)
+	}
+}
+
+func TestUpdateLoadingCase(t *testing.T) {
+	var testModel = Model{
+		typing: true,
+	}
+
+	_, cmd := testModel.Update(tea.KeyMsg{})
+
+	if cmd != nil {
+		t.Errorf("Expected return cmd to be nil, got %v", cmd)
+	}
+}
+
+func TestUpdateFallthroughCase(t *testing.T) {
+	var testModel = Model{
+		typing:  false,
+		loading: false,
+	}
+
+	_, cmd := testModel.Update(tea.KeyMsg{})
+
+	if cmd != nil {
+		t.Errorf("Expected return cmd to be nil, got %v", cmd)
+	}
+}
